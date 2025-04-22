@@ -1,0 +1,132 @@
+@{
+    ViewData["Title"] = "Üyeler";
+}
+
+
+@model IEnumerable<Member>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    h4 {
+        text-align: left;
+        margin-left: 20px;
+        color: #333;
+    }
+
+    .table-container {
+        margin-top: 30px;
+        width: 100%;
+        padding: 0 0px 40px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    thead {
+        background-color: #74ebd5;
+        color: #fff;
+        height: 20px;
+    }
+
+    th,
+    td {
+        padding: 2px;
+        text-align: center;
+        border-bottom: 1px solid #e0e0e0;
+        height: 5px;
+    }
+
+   
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .banner {
+        background-color: #74ebd5;
+        height: 100px;
+        width: 100%;
+        display: block;
+        align-items: center;
+    }
+
+    .banner h3 {
+        text-align: center;
+        padding: 24px 16px;
+        color: #fff;
+    }
+</style>
+
+<div class="banner">
+    <h3>Kulüp Üyelikleri Takip Sistemi</h3>
+</div>
+
+<div class="table-container">
+    <h4>Mevcut Üyeler</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>AD-SOYAD</th>
+                <th>E-POSTA</th>
+                <th>TELEFON</th>
+                <th>KULÜP</th>
+                <th>KAYIT TARİHİ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Model üzerinden döngü ile kullanıcı verilerini alıp gösteriyoruz -->
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.AdSoyad</td>
+                    <td>@user.Email</td>
+                    <td class="phone">@user.Telefon</td>
+                    <td>
+                        <p style="font-weight: bold;color:red">@user.Kulup</p>
+                    </td>
+                    <td>@user.CreatedAt.ToString("dd-MM-yyyy")</td>
+                </tr>
+            }
+            <!-- Diğer üyeler -->
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        // Sayfa yüklendikten sonra telefon numarasını formatla
+        document.addEventListener("DOMContentLoaded", function () {
+            const phoneCells = document.querySelectorAll('.phone');
+
+            phoneCells.forEach(function (cell) {
+                let phone = cell.textContent.trim();
+                if (phone.length === 10) {
+                    // Telefonu (XXX) XXX-XXXX formatında biçimlendir
+                    let formattedPhone = `(${phone.substring(0, 3)}) ${phone.substring(3, 6)}-${phone.substring(6)}`;
+                    cell.textContent = formattedPhone;
+                }
+            });
+        });
+    </script>
+}

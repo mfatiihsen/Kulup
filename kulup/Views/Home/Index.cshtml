@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg,
+                #6a11cb 0%,
+                #2575fc 100%);
+        /* Genel background gradient */
+    }
+</style>
+
+<header>
+    <h2>Kulüp Üyelikleri Takip Sistemi</h2>
+</header>
+
+<main>
+    <div class="button-container">
+        <a asp-controller="Register" asp-action="Index" class="action-button"><i class="fas fa-user-plus"></i> Üye
+            Ol</a>
+        @* <a asp-controller="Login" asp-action="Index" class="action-button"><i class="fas fa-sign-in-alt"></i> Giriş
+            Yap</a> *@
+        <a asp-controller="Member" asp-action="Index" class="action-button"><i class="fas fa-users"></i></i>Mevcut
+            Üyeleri Görüntüle</a>
+        <a asp-controller="Contact" asp-action="Index" class="action-button"><i class="fas fa-envelope"></i>
+            İletişim</a>
+        <a asp-controller="Admin" asp-action="Index" class="action-button"><i class="fa-solid fa-lock"></i> Yönetici Paneli</a>
+    </div>
+</main>

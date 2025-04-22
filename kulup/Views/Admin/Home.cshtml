@@ -1,0 +1,93 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    .navbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0px;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .navbar-logo a {
+        font-size: 24px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .navbar-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .navbar-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+    }
+
+    .navbar-links li a:hover {
+        color: #f39c12;
+    }
+
+    .navbar-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .navbar-toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+    }
+
+    .content {
+        margin-top: 80px;
+        padding: 20px;
+    }
+</style>
+
+
+
+
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="#"></a>
+    </div>
+    <ul class="navbar-links">
+        <li><a href="#">Ana Sayfa</a></li>
+        <li><a asp-action="Message" asp-controller="Admin">Mesajlar</a></li>
+        <li><a href="#">Üyeler</a></li>
+    </ul>
+    <div class="navbar-toggle" id="navbar-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<div class="content">
+    <!-- Sayfa içeriği buraya gelecek -->
+    <h1>Hoşgeldiniz!</h1>
+    <p style="text-align: center;">Yönetici Paneli</p>
+</div>

@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "İletişim";
+}
+
+
+
+
+<style>
+
+    body{
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    }
+
+    .contact-form {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+
+        margin-top: 50px;
+        /* 👈 Üst boşluk */
+        margin-bottom: 50px;
+        /* 👈 Alt boşluk */
+    }
+
+    .contact-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .contact-form label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    .contact-form button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background-color: #fff;
+        border: 1px solid #74ebd5;
+        color: #74ebd5;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.4s ease-in-out;
+    }
+
+    .contact-form button:hover {
+        background-color: #74ebd5;
+        color: #fff;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        border: 1px solid #74ebd5;
+    }
+
+    input:focus ,textarea:focus {
+        border-color: #ACB6E5;
+        /* kırmızımsı bir renk */
+        outline: none;
+        /* dış çerçeveyi kaldırır */
+    }
+</style>
+
+
+
+<form asp-action="SendMessage" method="post" class="contact-form">
+    <h2>İletişim Formu</h2>
+    <input placeholder="Ad-Soyad" type="text" id="name" name="name" required>
+
+    <input placeholder="E-Posta" type="email" id="email" name="email" required>
+
+    <input placeholder="Konu" type="text" id="subject" name="subject" required>
+
+    <textarea placeholder="Mesajını" id="message" name="message" rows="5" required></textarea>
+    
+    <button type="submit">Gönder</button>
+</form>

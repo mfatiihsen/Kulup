@@ -1,0 +1,165 @@
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .register-container {
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 40px 30px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .register-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        border-color: #4A90E2;
+        outline: none;
+    }
+
+    .register-button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background-color: #fff;
+        border: 1px solid #74ebd5;
+        color: #74ebd5;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.4s ease-in-out;
+    }
+
+    .register-button:hover {
+        background-color: #74ebd5;
+        color: #fff;
+    }
+
+    .bottom-text {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .bottom-text a {
+        color: #74ebd5;
+        text-decoration: none;
+    }
+
+    .form-group input {
+        border: 1px solid #74ebd5;
+    }
+
+    .form-group select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #74ebd5;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background-color: white;
+        color: #333;
+
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: none;
+        /* bazı tarayıcılarda ekstra gerekebilir */
+    }
+
+    .form-group select:focus {
+        border-color: #4A90E2;
+        outline: none;
+    }
+
+    .dropdown-select {
+        color: #999;
+        /* varsayılan olarak açık gri */
+    }
+
+    /* Seçildiğinde yazı rengi değişsin */
+    .dropdown-select option {
+        color: #999;
+    }
+</style>
+
+
+<div class="register-container">
+    <h2>Kayıt Ol</h2>
+    <form action="/Register/Register"  method="post">
+        <div class="form-group">
+            <input placeholder="Ad-Soyad" type="text" id="ad" name="AdSoyad" required>
+        </div>
+        <div class="form-group">
+            <input placeholder="E-Posta" type="email" id="email" name="Email" required>
+        </div>
+        <div class="form-group">
+            <select name="Kulup" id="kulup" required>
+                <option value="" disabled selected hidden>Kulüp Seçiniz</option>
+                <option value="">Kulüp Seçiniz</option>
+                <option value="Tiyatro">Tiyatro Kulübü</option>
+                <option value="Müzik">Müzik Kulübü</option>
+                <option value="Yazılım">Yazılım Kulübü</option>
+                <option value="Dans">Dans Kulübü</option>
+                <option value="Gönüllülük">Gönüllülük Kulübü</option>
+            </select>
+        </div>
+
+        </select>
+        <div class="form-group">
+            <input placeholder="Telefon" type="tel" id="tel" name="Telefon" required>
+        </div>
+        <div class="form-group">
+            <input placeholder="Şifre" type="password" id="sifre" name="Sifre" required>
+        </div>
+        <div class="form-group">
+            <input placeholder="Şifre Tekrarı" type="password" id="sifre2" name="SifreTekrar" required>
+        </div>
+        <button type="submit" class="register-button">Kayıt Ol</button>
+    </form>
+    <div class="bottom-text">
+        Zaten hesabın var mı? <a href="/Login">Giriş Yap</a>
+    </div>
+</div>
