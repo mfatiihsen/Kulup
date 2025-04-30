@@ -75,9 +75,9 @@
         <a href="#"></a>
     </div>
     <ul class="navbar-links">
-        <li><a href="#">Ana Sayfa</a></li>
+        <li><a asp-action="Home">Yöneticiler</a></li>
         <li><a asp-action="Message" asp-controller="Admin">Mesajlar</a></li>
-        <li><a href="#">Üyeler</a></li>
+        <li><a asp-action="Members" asp-controller="Admin">Üyeler</a></li>
     </ul>
     <div class="navbar-toggle" id="navbar-toggle">
         <span></span>
@@ -91,3 +91,12 @@
     <h1>Hoşgeldiniz!</h1>
     <p style="text-align: center;">Yönetici Paneli</p>
 </div>
+
+
+
+<script>
+    window.history.pushState(null, document.title, window.location.href);
+    window.onpopstate = function () {
+        window.history.pushState(null, document.title, window.location.href);
+    };
+</script>

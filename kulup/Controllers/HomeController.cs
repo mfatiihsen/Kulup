@@ -4,6 +4,7 @@ using kulup.Models;
 
 namespace kulup.Controllers;
 
+
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -12,6 +13,7 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
+
 
     public IActionResult Index()
     {

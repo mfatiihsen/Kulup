@@ -20,6 +20,7 @@ namespace kulup.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Register(Member model)
         {
@@ -31,8 +32,9 @@ namespace kulup.Controllers
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Home");
+            }else{
+                return View(model);
             }
-            return View(model);
         }
     }
 }

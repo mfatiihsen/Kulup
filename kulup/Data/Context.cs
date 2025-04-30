@@ -14,5 +14,9 @@ namespace kulup.Data
 
         public DbSet<Member> Members { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+
+
     }
+
 }

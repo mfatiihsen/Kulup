@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Mail;
 using kulup.Data;
 using kulup.Service;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +15,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UygulamaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//Session ayarları
+builder.Services.AddSession();
+builder.Services.AddDistributedMemoryCache();
+
+
+
+
 // SMTP ayarları
-builder.Services.AddSingleton<IEmailSender,EmailSender>();
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddSingleton<SmtpClient>(sp =>
 {
     var smtpClient = new SmtpClient("smtp.mailtrap.io")
@@ -37,12 +45,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseRouting();
 
+
+app.UseSession(); // Session middleware'i ekleyin
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+
 
 app.MapControllerRoute(
     name: "default",
