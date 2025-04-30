@@ -1,0 +1,110 @@
+@{
+    ViewData["Title"] = "Yönetici Girişi";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-container {
+        margin: auto auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        transition: border-color 0.3s;
+    }
+
+    input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background-color: #74ebd5;
+        border: 1px solid #74ebd5;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.4s ease-in-out;
+    }
+
+    button:hover {
+        background-color: #fff;
+        color: #74ebd5;
+    }
+
+    .login-footer {
+        margin-top: 16px;
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+    }
+
+
+    .form-group input:focus {
+        border-color: #74ebd5;
+        outline: none;
+    }
+</style>
+
+
+
+
+<div class="login-container">
+    <h2>Yönetici Paneli</h2>
+    <form autocomplete="off" asp-controller="Admin" asp-action="Login" method="post">
+        <div class="form-group">
+            <input placeholder="Sicil Numrası" maxlength="11" type="text" id="sicilNo" name="sicilNo" required>
+        </div>
+
+        <div class="form-group">
+            <input placeholder="Şifre" type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit">Yönetici Girişi</button>
+
+        <div class="login-footer">
+        </div>
+        @if (ViewBag.Error != null)
+        {
+            <div style="color:red; margin-top:10px;">@ViewBag.Error</div>
+        }
+    </form>
+</div>

@@ -1,0 +1,198 @@
+@model List<kulup.Models.Member>
+
+
+@{
+    ViewData["Title"] = "Üyeler";
+}
+
+
+
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f7f9fc;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+        padding: 14px 16px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+        background-color: #2e7d32;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .btn-edit {
+        background-color: #42a5f5;
+        color: white;
+    }
+
+    .btn-delete {
+        background-color: #ef5350;
+        color: white;
+    }
+
+
+    .navbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0px;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .navbar-logo a {
+        font-size: 24px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .navbar-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .navbar-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+    }
+
+    .navbar-links li a:hover {
+        color: #f39c12;
+    }
+
+    .navbar-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .navbar-toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+    }
+
+    .content {
+        margin-top: 80px;
+        padding: 20px;
+    }
+</style>
+
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="#"></a>
+    </div>
+    <ul class="navbar-links">
+        <li><a asp-action="Home">Yöneticiler</a></li>
+        <li><a asp-action="Message" asp-controller="Admin">Mesajlar</a></li>
+        <li><a asp-action="Members" asp-controller="Admin">Üyeler</a></li>
+    </ul>
+    <div class="navbar-toggle" id="navbar-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+
+
+
+<h1>Kullanıcı Listesi</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adı Soyadı</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Parola</th>
+                <th>Kulüp</th>
+                <th>Oluşturulma Tarihi</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var member in Model)
+                {
+                    <tr>
+                        <td>@member.Id</td>
+                        <td>@member.AdSoyad</td>
+                        <td>@member.Email</td>
+                        <td>@member.Telefon</td>
+                        <td>@member.Sifre</td>
+                        <td>@member.Kulup</td>
+                        <td>@member.CreatedAt.ToString("dd-MM-yyyy")</td>
+                        <td>
+                            <form method="post" action="@Url.Action("DeleteConfirmed", "Admin", new { id = member.Id })"
+                                onsubmit="return confirm('Emin misiniz?')">
+                                <button type="submit" class="btn btn-delete">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" style="text-align: center;">Üye bulunamadı.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
