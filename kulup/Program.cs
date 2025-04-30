@@ -1,7 +1,6 @@
 using System.Net;
 using System.Net.Mail;
 using kulup.Data;
-using kulup.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -18,22 +17,16 @@ builder.Services.AddDbContext<UygulamaDbContext>(options =>
 //Session ayarları
 builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache();
-
-
-
-
-// SMTP ayarları
-builder.Services.AddSingleton<IEmailSender, EmailSender>();
-builder.Services.AddSingleton<SmtpClient>(sp =>
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
 {
-    var smtpClient = new SmtpClient("smtp.mailtrap.io")
-    {
-        Credentials = new NetworkCredential("ademfatih37@gmail.com", "password"),
-        Port = 587,
-    };
-
-    return smtpClient;
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturum süresi
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
+
+
+
 
 var app = builder.Build();
 

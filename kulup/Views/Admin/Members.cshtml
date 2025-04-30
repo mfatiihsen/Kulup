@@ -76,14 +76,34 @@
     .navbar {
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        padding: 10px 0px;
+        padding: 10px 20px;
         background-color: #333;
         color: white;
         position: fixed;
+        top: 0;
         z-index: 1000;
     }
+
+    .navbar-left a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-size: 16px;
+        transition: color 0.3s ease;
+    }
+
+    .navbar-left a:hover {
+        color: #f39c12;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+    }
+
+
 
     .navbar-logo a {
         font-size: 24px;
@@ -131,18 +151,18 @@
 
 
 <nav class="navbar">
-    <div class="navbar-logo">
-        <a href="#"></a>
+    <div class="navbar-left">
+        <a asp-action="Home">Yöneticiler</a>
+        <a asp-action="Members" asp-controller="Admin">Üyeler</a>
+        <a asp-action="Add" asp-controller="Admin">Yönetici Ekle</a>
     </div>
-    <ul class="navbar-links">
-        <li><a asp-action="Home">Yöneticiler</a></li>
-        <li><a asp-action="Message" asp-controller="Admin">Mesajlar</a></li>
-        <li><a asp-action="Members" asp-controller="Admin">Üyeler</a></li>
-    </ul>
-    <div class="navbar-toggle" id="navbar-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="navbar-right">
+        <form asp-controller="Admin" asp-action="Logout" method="post">
+            <button type="submit"
+                style="background-color: red; color: white; border: none; padding: 10px; border-radius: 5px;">
+                Çıkış Yap
+            </button>
+        </form>
     </div>
 </nav>
 

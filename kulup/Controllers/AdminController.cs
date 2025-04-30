@@ -19,7 +19,12 @@ public class AdminController : Controller
 
     public IActionResult Home()
     {
-        return View("Home");
+        if (HttpContext.Session.GetString("AdminId") == null)
+        {
+            return RedirectToAction("Login", "Admin");
+        }
+        var admins = _context.Admins.ToList();
+        return View(admins);
     }
 
 
@@ -48,6 +53,10 @@ public class AdminController : Controller
 
     public async Task<IActionResult> Members()
     {
+        if (HttpContext.Session.GetString("AdminId") == null)
+        {
+            return RedirectToAction("Login", "Admin");
+        }
         var users = await _context.Members.Select(u => new Member
         {
             Id = u.Id,
@@ -63,26 +72,68 @@ public class AdminController : Controller
 
     // Kullanıcıyı silmek için Delete metodu
     [HttpPost]
-    [ActionName("DeleteConfirmed")] 
+    [ActionName("DeleteConfirmed")]
     public IActionResult DeleteConfirmed(int id)
     {
         var member = _context.Members.FirstOrDefault(m => m.Id == id);
 
         if (member == null)
         {
-            return NotFound(); 
+            return NotFound();
         }
 
-        _context.Members.Remove(member); 
-        _context.SaveChanges();  
+        _context.Members.Remove(member);
+        _context.SaveChanges();
 
         return RedirectToAction(nameof(Members));  // Silme işlemi başarılı, kullanıcılar sayfasına yönlendirme
     }
 
 
-    public IActionResult Message()
+    // Yöneticiyi silmek için Delete metodu
+    [HttpPost]
+    [ActionName("DeleteAdminConfirmed")]
+    public IActionResult DeleteConfirmedAdmin(int id)
     {
-        return View("Message");
+        var admin = _context.Admins.FirstOrDefault(a => a.Id == id);
+
+        if (admin == null)
+        {
+            return NotFound();
+        }
+
+        _context.Admins.Remove(admin);
+        _context.SaveChanges();
+
+        return RedirectToAction(nameof(Home));  // Silme işlemi başarılı, yöneticiler sayfasına yönlendirme
+    }
+
+
+
+    [HttpGet]
+    public IActionResult Add()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Add(Admin admin)
+    {
+        if (ModelState.IsValid)
+        {
+            admin.KayitTarihi = DateTime.Now; // Kayıt tarihi atanıyor
+            _context.Admins.Add(admin);
+            _context.SaveChanges();
+            return RedirectToAction("Home", "Admin");
+        }
+        return View(admin);
+    }
+
+
+    //Çıkış işlemi için Logout metodu
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Clear(); // Tüm session'ı temizle
+        return RedirectToAction("Login", "Admin"); // Giriş ekranına yönlendir
     }
 
 }

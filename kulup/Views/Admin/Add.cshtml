@@ -1,0 +1,114 @@
+@model kulup.Models.Admin
+
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f4f6f8;
+        padding: 40px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    form {
+        background-color: white;
+        max-width: 600px;
+        margin: auto;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        color: #555;
+    }
+
+    input.form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: border-color 0.3s;
+    }
+
+    input.form-control:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .btn-success {
+        width: 100%;
+        padding: 12px;
+        background-color: #28a745;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .text-danger {
+        color: red;
+        font-size: 0.9em;
+    }
+</style>
+
+
+
+<h2>Yeni Yönetici Ekle</h2>
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label>Ad Soyad</label>
+        <input asp-for="AdSoyad" class="form-control" />
+        <span asp-validation-for="AdSoyad" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Sicil No-TC</label>
+        <input maxlength="11" asp-for="sicilNo" class="form-control" />
+        <span asp-validation-for="sicilNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Şifre</label>
+        <input asp-for="password" type="password" class="form-control" />
+        <span asp-validation-for="password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Telefon</label>
+        <input asp-for="Telefon" class="form-control" />
+        <span asp-validation-for="Telefon" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
