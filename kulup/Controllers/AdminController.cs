@@ -104,7 +104,7 @@ public class AdminController : Controller
         _context.Admins.Remove(admin);
         _context.SaveChanges();
 
-        return RedirectToAction(nameof(Home));  // Silme işlemi başarılı, yöneticiler sayfasına yönlendirme
+        return RedirectToAction("Home","Admin");  // Silme işlemi başarılı, yöneticiler sayfasına yönlendirme
     }
 
 

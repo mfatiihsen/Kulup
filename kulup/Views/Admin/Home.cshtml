@@ -179,7 +179,7 @@
                 <td>@admin.Telefon</td>
                 <td>@admin.KayitTarihi</td>
                 <td>
-                    <form asp-action="DeleteConfirmedAdmin" asp-controller="Admin" asp-route-id="@admin.Id" method="post"
+                    <form action="@Url.Action("DeleteAdminConfirmed", "Admin", new { id = admin.Id })" method="post"
                         style="display:inline;">
                         <button type="submit" class="btn btn-danger btn-sm"
                             onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</button>

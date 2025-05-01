@@ -1,0 +1,99 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Genel Sıfırlama */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Başlık */
+header {
+  padding: 40px 0;
+  color: white;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    #6a11cb,
+    #5c4eb6
+  ); /* Hafif mor tonları geçişi */
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+header h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+main {
+  height: 100vh;
+  margin-bottom: 50px;
+}
+
+/* Butonlar konteyner */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 60px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Butonlar */
+.action-button {
+  font-family: "Poppins", sans-serif;
+  border: 2px solid white;
+  border-radius: 25px;
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  background-color: transparent;
+  width: 250px;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background-color: white;
+  color: #2575fc;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  width: 100%;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+  font-size: 0.95rem;
+  backdrop-filter: blur(5px);
+}
